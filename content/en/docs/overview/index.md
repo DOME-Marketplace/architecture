@@ -1,6 +1,6 @@
 ---
 title: Overview
-description: Overview of the DOME Onboarding process.
+description: Overview of the DOME technical architecture.
 weight: 10
 ---
 

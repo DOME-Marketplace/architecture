@@ -1,7 +1,7 @@
 ---
 title: Company registration
 description: Registering your company in DOME Marketplace.
-weight: 20
+weight: 200
 ---
 
 Before your company can create a Product Offering in the DOME Marketplace, it has to be registered as a Participant in the DOME ecosystem. The process of registering the company in a trusted way is called **onboarding**.
