@@ -4,3 +4,8 @@ Add styles or override variables from the theme here.
 
 */
 
+.td-content p code {
+    color: red !important;
+    font-size: 100% !important;
+    padding: 0.2em 0.2em !important;
+}
