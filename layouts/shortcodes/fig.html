@@ -1,4 +1,4 @@
-<figure{{ with .Get "class" }} class="{{ . }}"{{ else }} class="card rounded p-2 td-post-card mb-4 mt-4"{{ end }}>
+<figure{{ with .Get "style" }} style="{{ . }}"{{ end }}{{ with .Get "class" }} class="{{ . }}"{{ else }} class="card rounded p-2 td-post-card mb-4 mt-4"{{ end }}>
   {{- if .Get "link" -}}
     <a href="{{ .Get "link" }}"{{ with .Get "target" }} target="{{ . }}"{{ end }}{{ with .Get "rel" }} rel="{{ . }}"{{ end }}>
   {{- end -}}
