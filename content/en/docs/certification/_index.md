@@ -4,7 +4,21 @@ description: Demonstrating that your services comply with the required official 
 weight: 70
 ---
 
-{{% pageinfo %}}
-This is a placeholder, content is being added.
-{{% /pageinfo %}}
+## Verifiable Certifications are required for trusted decentralised replication
+
+{{< fig src="verifiable-certificates-and-replication.png" >}}
+
+## Verifiable Certifications and Gaia-X
+
+{{< fig src="verifiable-certificates-gaiax.png" >}}
+
+## The process for obtaining a Verifiable Certification
+
+### The future is all digital
+
+{{< fig src="verifiable-certificates-digital.png" >}}
+
+### But the present includes manual processes
+
+{{< fig src="verifiable-certificates-manual.png" >}}
 
