@@ -1,7 +1,7 @@
 ---
 title: Access Control
-description: DemPerforming access control with Verifiable Credentials acting as Electronic Mandates.
-weight: 60
+description: Performing access control with Verifiable Credentials acting as Electronic Mandates.
+weight: 40
 ---
 
 {{% pageinfo %}}

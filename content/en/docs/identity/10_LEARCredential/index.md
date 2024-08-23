@@ -91,21 +91,21 @@ Our Power Taxonomy could be generalised to other actions involving private secto
 
 This object is an array where each element is a power that is delegated from the Mandator to the Mandatee. The fields of each power object are:
 
-- `id`: The identifier of the power, which must be unique in the context of the Credential where it is included. It can be used as a reference when performing access control, for example in the audit records to identify the specific power that was used to grant access to some protected resource.
+- `id`: REQUIRED. The identifier of the power, which must be unique in the context of the Credential where it is included. It can be used as a reference when performing access control, for example in the audit records to identify the specific power that was used to grant access to some protected resource.
 
-- `powerSource` (conditional): The Mandator draws the power from one (or more) sources of power, e.g. 1) a concrete Legislation; 2) a piece of evidence (as another Mandate, in which case the mandator was a mandatee in that other mandate) and/or 3) a Natural Person with a specific profession that invest him/her with the authority to order to a mandator with a specific role the creation of a mandate, e.g. a judge authorising a civil servant (a `Mandator` that is a Natural Person with the appropriate role) to create a mandate for a relative to represent an incapacitated person).
+- `powerSource`: OPTIONAL. The Mandator draws the power from one (or more) sources of power, e.g., 1) a concrete Legislation; 2) a piece of evidence (as another Mandate, in which case the mandator was a mandatee in that other mandate) and/or 3) a Natural Person with a specific profession that invest him/her with the authority to order to a mandator with a specific role the creation of a mandate, e.g. a judge authorising a civil servant (a `Mandator` that is a Natural Person with the appropriate role) to create a mandate for a relative to represent an incapacitated person).
 
   In DOME, there are three cases with specific sources of power:
 
   - When the Mandator is a legal representative of the company, and the LEARCredential is signed with the eIDAS certificate of representation of the legal representative. In this case, the `powerSource` claim can be ommitted as it is implicit in the eIDAS signature. Alternatively, the `powerSource` claim is an object with the following fields:
     
-    - `type`, with value "eulaw".
-    - `evidence`, with value `"https://eur-lex.europa.eu/eli/reg/2014/910/oj"`.
+    - `type`, with value `eulaw`.
+    - `evidence`, with value ["https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32014R0910"](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32014R0910).
 
   - When the Mandator is a natural person who is the Mandatee in another LEARCredential. The `powerSource` claim is an object with the following fields:
 
-    - `type`, with value "LEARCredential".
-    - `format`, with the value "jwt_vc_json".
+    - `type`, with value `LEARCredential`.
+    - `format`, with the value `jwt_vc_json`.
     - `evidence`, with the LEARCredential where the Mandator is a Mandatee, in `jwt_vc_json` format.
 
   - When the Mandator is a legal representative of the company, but does not have an eIDAS certificate of representation, the Mandator can not sign the LEARCredential. In this case, there must be a trusted third-party which attests that the Mandator is effectively a legal representative of the company. This trusted third-party must perform the required due diligence to confirm the relationship, and then sign the credential with its eIDAS certificate.
@@ -114,31 +114,33 @@ This object is an array where each element is a power that is delegated from the
 
     In this case, the `powerSource` claim is an object with the following fields:
     
-    - `type`, with value "attestation".
+    - `type`, with value `attestation`.
     - `evidence`, with value the eIDAS certificate of the attester.
 
     In this case, the `mandate` object must contain an additional object called `attester`, identifying the entity that makes the attestation and with the same fields as the `mandator` object in the case where the Mandator signs the LEARCredential with an eIDAS certificate.
 
 
-- `tmf_type`: The type of power, which can be:
+- `tmf_type`: The type of power, which in DOME may be:
 
-  - "Domain": The mandatee has access to the services (subject to the restrictions defined by `action` and `function`) provided by one or more organisations where the services have been classified as belonging to that domain. The classification of services is arbitrary and defined by the service providers. A typical scenario is when some service providers agree on a classification of the services that they provide in the context of an ecosystem (like DOME), and the possible domains are made public, including the mapping to a given set of services in each provider.
+  - `Domain`: The mandatee has access to the services provided by one or more organisations where the services have been classified as belonging to that domain. Access to the services is subject to the restrictions defined by `action` and `function` below. The classification of services is arbitrary and is defined by the service providers. A typical scenario is when some service providers agree on a classification of the services that they provide collaboratively in the context of an ecosystem (like DOME), and the possible domains are made public, including the mapping to a given set of services in each provider.
         
-  - "Organization": The mandatee has access only to the services provided by one or more organizations, listed specifically in the power.
+  - `Organization`: The mandatee has access only to the services provided by one or more organizations, identified specifically in the power.
 
-- `tmf_domain`: Required when the `tmf_claim` has the value "Domain" or "Organization". It is an array with the names of the Domains or Organisations where the Mandatee is authorised to interact with this Mandate.
+  Other types of powers can be defined, making the system extensible.
+
+- `tmf_domain`: Required when the `tmf_type` claim has the value `Domain` or `Organization`. It is an array with the names of the Domains or Organisations where the Mandatee is authorised to interact with this Mandate.
 
   The names must be unique (e.g. via a namespace) to avoid potential clashes in different ecosystems.
                 
-  In DOME, for the powers of onboarding in DOME and for creating a `ProductOffering`, the `tmf_domain` claim must be an array with a single item "DOME".
+  In DOME, for the powers of onboarding in DOME and for creating a `ProductOffering`, the `tmf_domain` claim must be an array with a single item with the value `DOME`.
 
 - `tmf_function`: A string specifying the name of the function that the Mandatee can perform. The definition of the possible functions is done by the Verifier (the entity with which the Mandatee will interact with the LEAR Credential).
     
-  In DOME, the possible funcions are "Onboarding" and "ProductOffering", which enables the Mandatee to use the services provided by DOME to onboard organisations in the ecosystem and (if it is onboarded previously) to create a ProductOffering.
+  In DOME, two essential functions for Cloud Service Providers (CSP) accessing the marketplace are `Onboarding` and  `ProductOffering`, which enable the Mandatee to use the services provided by DOME to onboard organisations in the ecosystem and (if it is onboarded previously) to create a ProductOffering, respectively.
 
 - `tmf_action`: An array with the concrete actions belonging to the function that the Mandatee is allowed to execute.
     
-  In DOME, the possible actions are
+  In DOME, the possible actions for CSPs accessing the marketplace are:
         
-  - "Execute" when `tmf_function` is "Onboarding".
-  - Any combination of "Create", "Update" and "Delete" when `tmf_function` is "ProductOffering".
+  - `Execute` when `tmf_function` is `Onboarding`.
+  - Any combination of `Create`, `Update` and `Delete` when `tmf_function` is `ProductOffering`.
