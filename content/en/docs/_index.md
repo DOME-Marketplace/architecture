@@ -5,5 +5,5 @@ menu: {main: {weight: 20}}
 weight: 20
 ---
 
-This document describes the DOME technical architecture and its core components.
+This document describes the DOME's technical architecture and its core components.
 
