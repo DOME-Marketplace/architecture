@@ -10,4 +10,5 @@ weight: 30
 | Domain   | DOME       | ProductOffering | Create     | Create a ProductOffering in the marketplace |
 | Domain   | DOME       | ProductOffering | Update     | Update a ProductOffering in the marketplace |
 | Domain   | DOME       | ProductOffering | Delete     | Delete a ProductOffering in the marketplace |
+| Domain   | DOME       | Certification   | Attest     | Attest a Certification, associated to a Product and Organization  |
 | Domain   | DOME       | Certification   | Upload     | Upload a Verifiable Certification to the marketplace, associated to a Product |
