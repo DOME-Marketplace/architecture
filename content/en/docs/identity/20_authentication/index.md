@@ -20,15 +20,19 @@ We first explain the H2M flow: how your application can authenticate employees o
 
 # Human-to-Machine (H2M) authentication flow
 
-{{< fig src="DOMEAuthentication-H2M-flow-overview.drawio.png" caption="Two applications authenticating with Verifiable Credentials" >}}
+{{< fig src="authentication.h2m-overview.drawio.svg" width="70%" caption="Application authenticating with Verifiable Credentials" >}}
 
-DOME provides a component called the **VCVerifier** which makes very easy for applications to integrate authentication with Verifiable Credentials. If the application programmer knows how to use <a href="https://en.wikipedia.org/wiki/Social_login">Social Login</a>, then she already knows who to integrate authentication with Verifiable Credentials.
+DOME provides a component called the **VCVerifier** which makes very easy for applications to integrate authentication with Verifiable Credentials. The VCVerifier component hides the complexity of the OID4VP protocol required to talk to the Wallet.
 
-For the Application, the VCVerifier is just an OpenID Provider (OP), connecting to it using the standard <a href="https://openid.net/developers/how-connect-works/">OpenID Connect</a> protocol.
+The VCVerfier component talks standard OpenID Connect protocol with the application, and uses OID4VP to request authentication to the Wallet and receive the Verifiable Credential.
 
-The Application does not need any knowledge about how to talk to the Wallet to receive the Verifiable Credential from the user. This complexity is hidden from the application by the VCVerifier. The Application never talks to the Wallet, only to the VCVerifier.
+For the Application, the VCVerifier is just an OpenID Provider (OP), so any application which can use standard <a href="https://openid.net/specs/openid-connect-core-1_0.html">OpenID Connect</a>, either directly or through an OpenID Provider like Keycloak, can authenticate users with Verifiable Credentials using the DOME VCVerifier component. If you use Keycloak or other OpenID Provider, you have to configure it as an identity broker, in the same way as you would do if using social logins (e.g., Google, Facebook, etc.).
 
-Once the VCVerifier has received the Verifiable Credential from her Wallet and performed a set of verifications (according to a defined policy), it sends to the Application both the Verifiable Credential and an Access Token that the Application can use to access protected resources as in any other OpenID Connect flow.
+Once the VCVerifier has received the Verifiable Credential from the Wallet and performed a set of verifications (according to a defined policy), it sends to the Application an ID_token containing standard OPenID claims derived from the contents of the Verifiable Credential. The ID_token also contains some non-standard claims, in particular one with the whole Verifiable Credential received from the Wallaet.
+
+If the application only requires standard claims like first-name, last_name or email, then using Verifiable Credentials as authentication mechanism is just a configuration task.
+
+However, if the application requires the whole set of information in the Verifiable Credential, it has to support the non-standard claims and extract the information from the Verifiable Credential.
 
 ## Parameters of the VCVerifier
 
@@ -38,9 +42,12 @@ When talking to the VCVerifier, your Application MUST use the OIDC **Authorizati
 
 Your Application must use the following endpoints of the VCVerifier during the flow:
 
-- **Authorization Endpoint**: https://verifier.dome-marketplace-prd.org/auth
-- **Token Endpoint**: https://verifier.dome-marketplace-prd.org/token
-- **UserInfo Endpoint**: https://verifier.dome-marketplace-prd.org/userinfo
+- **Authorization Endpoint**: https://verifier.dome-marketplace.eu/auth
+- **Token Endpoint**: https://verifier.dome-marketplace.eu/token
+- **UserInfo Endpoint**: https://verifier.dome-marketplace.eu/userinfo
+
+
+https://verifier.dome-marketplace.eu/oidc/authorize?state=6cf8b5dd-3fc9-4d6b-bc64-722badb5a419&client_id=did:key:zDnaeTU39Wx9KXgmEwmfXsZSyEVxgCqwCVmoPyVQUTD8bhW8a&response_type=code&request_uri=https://dome-marketplace.eu/auth/vc/request.jwt&scope=openid learcredential&nonce=56a091bb-ad1e-47f0-bc8b-7dfe99a6bae4
 
 ## Starting the Authentication Request
 
