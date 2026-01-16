@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Company registration on DOME Architecture</title>
+    <link>https://DOME-Marketplace.github.io/architecture/docs/registration/</link>
+    <description>Recent content in Company registration on DOME Architecture</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <atom:link href="https://DOME-Marketplace.github.io/architecture/docs/registration/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Overview</title>
+      <link>https://DOME-Marketplace.github.io/architecture/docs/registration/10_overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://DOME-Marketplace.github.io/architecture/docs/registration/10_overview/</guid>
+      <description>&lt;div class=&#34;pageinfo pageinfo-primary&#34;&gt;&#xA;&lt;p&gt;This is a placeholder page. Content is being created.&lt;/p&gt;&#xA;&#xA;&lt;/div&gt;</description>
+    </item>
+    <item>
+      <title>LEARCredential (digital process)</title>
+      <link>https://DOME-Marketplace.github.io/architecture/docs/registration/lear_digital/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://DOME-Marketplace.github.io/architecture/docs/registration/lear_digital/</guid>
+      <description>&lt;h2 id=&#34;go-to-the-dome-issuer-portal&#34;&gt;Go to the DOME Issuer portal&lt;a class=&#34;td-heading-self-link&#34; href=&#34;#go-to-the-dome-issuer-portal&#34; aria-label=&#34;Heading self-link&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&#xA;&lt;p&gt;The DOME Issuer portal is located at &lt;a href=&#34;https://dome.mycredential.eu/&#34;&gt;https://dome.mycredential.eu/&lt;/a&gt; and below is an image of the screen.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;../dome_issuer_home.png&#34; alt=&#34;DOME Issuer portal&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;The site is intended for Legal Representatives of companies who want to issue one or more LEARCredentials to one or more employees of the company. A LEARCredential is a type of Verifiable Credential which enables an employee, nominated by a legal representative, to act on behalf of an organisation with restricted powers with respect to third-parties.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>LEARCredential (manual process)</title>
+      <link>https://DOME-Marketplace.github.io/architecture/docs/registration/30_learcredential_manual/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://DOME-Marketplace.github.io/architecture/docs/registration/30_learcredential_manual/</guid>
+      <description>&lt;div class=&#34;pageinfo pageinfo-primary&#34;&gt;&#xA;&lt;p&gt;This is a placeholder page. Content is being created.&lt;/p&gt;&#xA;&#xA;&lt;/div&gt;</description>
+    </item>
+    <item>
+      <title>Powers of Representation</title>
+      <link>https://DOME-Marketplace.github.io/architecture/docs/registration/40_powers_of_representation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://DOME-Marketplace.github.io/architecture/docs/registration/40_powers_of_representation/</guid>
+      <description>&lt;div class=&#34;pageinfo pageinfo-primary&#34;&gt;&#xA;&lt;p&gt;This is a placeholder page. Content is being created.&lt;/p&gt;&#xA;&#xA;&lt;/div&gt;</description>
+    </item>
+  </channel>
+</rss>

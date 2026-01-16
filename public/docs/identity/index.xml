@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Digital Identity on DOME Architecture</title>
+    <link>https://DOME-Marketplace.github.io/architecture/docs/identity/</link>
+    <description>Recent content in Digital Identity on DOME Architecture</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <atom:link href="https://DOME-Marketplace.github.io/architecture/docs/identity/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Overview</title>
+      <link>https://DOME-Marketplace.github.io/architecture/docs/identity/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://DOME-Marketplace.github.io/architecture/docs/identity/overview/</guid>
+      <description>&lt;p&gt;DOME uses &lt;strong&gt;electronic mandates for authentication of employees acting on behalf of organizations&lt;/strong&gt;. These electronic mandates are represented in machine-readable format compatible with the EUDI Wallet (and the future Business Wallet) to facilitate automated processing and verification, and eliminate the slow, cumbersome and error-prone manual processes associated with traditional paper-based mandates.&lt;/p&gt;&#xA;&lt;p&gt;DOME requires the eMandates to be &lt;strong&gt;signed with an advanced signature or seal&lt;/strong&gt;, using an eIDAS qualified certificate issued by a QTSP (qualified trust services provider). This provides a level of legal certainty equivalent to any other business document signed in the same way, which is adequate for the overwhelming majority of business processes, including the ones in the DOME ecosystem.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>The LEARCredential</title>
+      <link>https://DOME-Marketplace.github.io/architecture/docs/identity/10_learcredential/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://DOME-Marketplace.github.io/architecture/docs/identity/10_learcredential/</guid>
+      <description>&lt;p&gt;The &lt;code&gt;LEARCredential&lt;/code&gt; is a machine-readable legal document representing an electronic mandate (known also as Company Authorization Letter). In this context, the term &lt;code&gt;mandate&lt;/code&gt; is used to describe the concept of &lt;strong&gt;delegating specific permissions and powers to an employee of an organisation, enabling that employee to act on behalf of the company in a specific set of matters or tasks&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;p&gt;We explicitly focus on the business environment and do not cover natural persons acting as citizens.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Authentication</title>
+      <link>https://DOME-Marketplace.github.io/architecture/docs/identity/20_authentication/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://DOME-Marketplace.github.io/architecture/docs/identity/20_authentication/</guid>
+      <description>&lt;p&gt;DOME uses Verifiable Credentials for authentication and access control of the users interacting with the DOME services.&lt;/p&gt;&#xA;&lt;p&gt;In this document we describe &lt;strong&gt;how you can integrate the DOME authentication mechanism in your own applications&lt;/strong&gt;. It is very easy.&lt;/p&gt;&#xA;&lt;p&gt;You do not need to know the underlying technical details to use it, but if you are interested you can look &lt;a href=&#34;https://dome-marketplace.github.io/powers-of-representation/index.html&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;There are two types of users that can authenticate to DOME services:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Powers</title>
+      <link>https://DOME-Marketplace.github.io/architecture/docs/identity/30_powers/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://DOME-Marketplace.github.io/architecture/docs/identity/30_powers/</guid>
+      <description>&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;tmf_type&lt;/th&gt;&#xA;          &lt;th&gt;tmf_domain&lt;/th&gt;&#xA;          &lt;th&gt;tmf_function&lt;/th&gt;&#xA;          &lt;th&gt;tmf_action&lt;/th&gt;&#xA;          &lt;th&gt;Description&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Domain&lt;/td&gt;&#xA;          &lt;td&gt;DOME&lt;/td&gt;&#xA;          &lt;td&gt;Onboarding&lt;/td&gt;&#xA;          &lt;td&gt;Execute&lt;/td&gt;&#xA;          &lt;td&gt;Perform the onboarding process in DOME&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Domain&lt;/td&gt;&#xA;          &lt;td&gt;DOME&lt;/td&gt;&#xA;          &lt;td&gt;ProductOffering&lt;/td&gt;&#xA;          &lt;td&gt;Create&lt;/td&gt;&#xA;          &lt;td&gt;Create a ProductOffering in the marketplace&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Domain&lt;/td&gt;&#xA;          &lt;td&gt;DOME&lt;/td&gt;&#xA;          &lt;td&gt;ProductOffering&lt;/td&gt;&#xA;          &lt;td&gt;Update&lt;/td&gt;&#xA;          &lt;td&gt;Update a ProductOffering in the marketplace&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Domain&lt;/td&gt;&#xA;          &lt;td&gt;DOME&lt;/td&gt;&#xA;          &lt;td&gt;ProductOffering&lt;/td&gt;&#xA;          &lt;td&gt;Delete&lt;/td&gt;&#xA;          &lt;td&gt;Delete a ProductOffering in the marketplace&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Domain&lt;/td&gt;&#xA;          &lt;td&gt;DOME&lt;/td&gt;&#xA;          &lt;td&gt;Certification&lt;/td&gt;&#xA;          &lt;td&gt;Attest&lt;/td&gt;&#xA;          &lt;td&gt;Attest a Certification, associated to a Product and Organization&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Domain&lt;/td&gt;&#xA;          &lt;td&gt;DOME&lt;/td&gt;&#xA;          &lt;td&gt;Certification&lt;/td&gt;&#xA;          &lt;td&gt;Upload&lt;/td&gt;&#xA;          &lt;td&gt;Upload a Verifiable Certification to the marketplace, associated to a Product&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;</description>
+    </item>
+  </channel>
+</rss>
