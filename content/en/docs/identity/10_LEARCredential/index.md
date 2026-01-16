@@ -1,14 +1,16 @@
 ---
 title: The LEARCredential
-description: The LEARCredential as an electronic mandate for powerful authentication and access control in DOME and beyond.
+description: We describe here the LEARCredential, which is an electronic mandate for powerful authentication and access control in DOME and beyond.
 weight: 10
 ---
 
-The `LEARCredential` is a machine-readable legal document representing an electonic Mandate (known also as Company Authorization Letter). In this context, the term Mandate is used to describe the concept of **delegating specific permissions and powers to an employee of an organisation, enabling that employee to act on behalf of the company in a specific set of matters or tasks**. We explicitly focus on the business environment and do not cover natural persons acting as citizens.
+The `LEARCredential` is a machine-readable legal document representing an electronic mandate (known also as Company Authorization Letter). In this context, the term `mandate` is used to describe the concept of **delegating specific permissions and powers to an employee of an organisation, enabling that employee to act on behalf of the company in a specific set of matters or tasks**.
+
+We explicitly focus on the business environment and do not cover natural persons acting as citizens.
 
 Instead of inefficient and insecure paper or PDFs, in DOME we use **Verifiable Credentials** to represent an eMandate. Given that we are in the EU, in DOME we use **eIDAS electronic signatures or seals** to make the credential a legal document with higher legal certainty than using other types of digital signatures (for example, a qualified electronic signature has in the EU the same legal validity as a handwritten signature).
 
-In DOME, the specific powers being delegated are related to the interaction of an employee of an organisation with DOME, for example to authorise the employee perform onboarding or creating a Product Offering in the marketplace.
+In DOME, the specific powers being delegated are related to the interaction of an employee of an organisation with the DOME ecosystem, for example to authorise the employee perform onboarding, creating a Product Offering in the marketplace or contracting a product from a provider.
 
 The LEARCredential (**L**egal **E**ntity **A**uthorised **R**epresentative **Credential**):
 - is a Verifiable Credential that a legal entity (an organisation) issues to an employee (or subcontractor),
@@ -20,25 +22,11 @@ The figure below describes a high-level view of the LEARCredential.
 
 {{< fig style="width:60%" src="learcredential-overview.png" caption="Composition of a LEARCredential" >}}
 
-The data model of the LEARCredential is based in the [RPaM-Ontology](https://github.com/everis-rpam/RPaM-Ontology/wiki/Ontology-Development-Report), which is a project started in 2018 by the Directorate-General for Informatics (DG-DIGIT) of the European Commission, funded by the ISA Programme, to organise and support the development of an ontology about the Representation of Powers and Mandates, from now on the RPaM Ontology.
+The data model of the LEARCredential is based in the [RPaM-Ontology](https://github.com/everis-rpam/RPaM-Ontology/wiki/Ontology-Development-Report), which is a project started in 2018 by the Directorate-General for Informatics (DG-DIGIT) of the European Commission, funded by the ISA Programme, to organise and support the development of an ontology about the **Representation of Powers and Mandates**, from now on the RPaM Ontology.
 
 We adapt the results of that project, with simplifications and specialisations, to the concrete environment where we use the LEARCredential. To facilitate the job of the reader of this document, in some sections we copy literal sentences from the RPaM Ontology project, and adapt the texts to our requirements. However, the reader is encouraged to access the original documents for more details and understand the original approach, including the [RPaM Ontology Glossary](https://everis-rpam.github.io/Glossary.html).
 
-## The Trust Framework for the LEARCredential
 
-The LEARCredential is based on the existing eIDAS (electronic Identification, Authentication and Trust Services).
-
-> The eIDAS Regulation established the framework to ensure that electronic interactions between businesses are safer, faster and more efficient, no matter the European country they take place in. It is a European Regulation that created one single framework for electronic identification (eID) and trust services, making it more straightforward to deliver services across the European Union.[^1]
-
-[^1]:Discover eIDAS: https://digital-strategy.ec.europa.eu/en/policies/discover-eidas.
-
-The main eIDAS trust services that DOME relies on are the **Electronic signature (eSignature)** and the **Electronic seal (eSeal)**. An eSignature is the expression in an electronic format of a person’s agreement to the content of a document or set of data. Qualified eSignatures have the same legal effect as hand written signatures. An eSeal is similar in its function to the traditional business stamp. It can be applied to an electronic document to guarantee the origin and integrity of a document.
-
-In DOME we accept both for the creation of a LEARCredential. For the rest of the document we will use the term `electronic signature` to refer to both, except when the difference is important for the objectives of the explanation.
-
-The figure below describes at a high level how an organisation can create a LEARCredential in a self-service way, when the legal representative of the company has an eIDAS certificate. The process is essentially the same as when electronically signing a PDF. Instead of using a computer program that can sign PDFs (e.g., Acrobat Reader), the legal representative uses a program that can generate and sign Verifieble Credentials. In DOME we provide such a program, just in case an organisation dees not yet have its own. In addition, for organisations that are lagging in digitalisation and do not still have an eIDAS certificate (can not use electronic signatures), DOME also provides a third-party creation and signature process that can be used in the meantime.
-
-{{< fig src="learcredential-trust-source.png" caption="Composition of a LEARCredential" >}}
 
 
 ## The Mandate
@@ -71,7 +59,7 @@ The object mandatee identifies the employee on whom a subset of powers is delega
 The private key controlled by the employee is used to prove to Relying parties receiving the LEARCredential that the holder and presenter of the credential is the same person identified in the mandatee object. We support two mechanisms for the public key in the mandatee object:
 
 - Using a did:key where the employee controls the private key associated to the did:key.
-- Using an eIDAS certificate owned by the employee.
+- Using an eIDAS certificate owned by the employee. This is very rare today (end of 2024), but will become more common when eIDAS2 and the EUDI Wallet is adopted.
 
 ### Signer
 
@@ -89,7 +77,7 @@ In DOME, we have specified a power taxonomy targeted at the interactions with th
 Our Power Taxonomy could be generalised to other actions involving private sector companies, but it is out of scope of this version of the document.
 
 
-This object is an array where each element is a power that is delegated from the Mandator to the Mandatee. The fields of each power object are:
+The `power` object is an array where each element is a power that is delegated from the Mandator to the Mandatee. The fields of each power object are:
 
 - `id`: REQUIRED. The identifier of the power, which must be unique in the context of the Credential where it is included. It can be used as a reference when performing access control, for example in the audit records to identify the specific power that was used to grant access to some protected resource.
 
@@ -120,7 +108,7 @@ This object is an array where each element is a power that is delegated from the
     In this case, the `mandate` object must contain an additional object called `attester`, identifying the entity that makes the attestation and with the same fields as the `mandator` object in the case where the Mandator signs the LEARCredential with an eIDAS certificate.
 
 
-- `tmf_type`: The type of power, which in DOME may be:
+- `type`: REQUIRED. The type of power, which in DOME may be:
 
   - `Domain`: The mandatee has access to the services provided by one or more organisations where the services have been classified as belonging to that domain. Access to the services is subject to the restrictions defined by `action` and `function` below. The classification of services is arbitrary and is defined by the service providers. A typical scenario is when some service providers agree on a classification of the services that they provide collaboratively in the context of an ecosystem (like DOME), and the possible domains are made public, including the mapping to a given set of services in each provider.
         
@@ -128,19 +116,19 @@ This object is an array where each element is a power that is delegated from the
 
   Other types of powers can be defined, making the system extensible.
 
-- `tmf_domain`: Required when the `tmf_type` claim has the value `Domain` or `Organization`. It is an array with the names of the Domains or Organisations where the Mandatee is authorised to interact with this Mandate.
+- `domain`: REQUIRED when the `type` claim has the value `Domain` or `Organization`. It is an array with the names of the Domains or Organisations where the Mandatee is authorised to interact with this Mandate.
 
   The names must be unique (e.g. via a namespace) to avoid potential clashes in different ecosystems.
                 
-  In DOME, for the powers of onboarding in DOME and for creating a `ProductOffering`, the `tmf_domain` claim must be an array with a single item with the value `DOME`.
+  In DOME, for the powers of onboarding in DOME and for creating a `ProductOffering`, the `domain` claim must be an array with a single item with the value `DOME`.
 
-- `tmf_function`: A string specifying the name of the function that the Mandatee can perform. The definition of the possible functions is done by the Verifier (the entity with which the Mandatee will interact with the LEAR Credential).
+- `function`: A string specifying the name of the function that the Mandatee can perform. The definition of the possible functions is done by the Relying Party (the entity with which the Mandatee will interact with the LEAR Credential).
     
   In DOME, two essential functions for Cloud Service Providers (CSP) accessing the marketplace are `Onboarding` and  `ProductOffering`, which enable the Mandatee to use the services provided by DOME to onboard organisations in the ecosystem and (if it is onboarded previously) to create a ProductOffering, respectively.
 
-- `tmf_action`: An array with the concrete actions belonging to the function that the Mandatee is allowed to execute.
+- `action`: An array with the concrete actions belonging to the function that the Mandatee is allowed to execute.
     
   In DOME, the possible actions for CSPs accessing the marketplace are:
         
-  - `Execute` when `tmf_function` is `Onboarding`.
-  - Any combination of `Create`, `Update` and `Delete` when `tmf_function` is `ProductOffering`.
+  - `Execute` when `function` is `Onboarding`.
+  - Any combination of `Create`, `Update` and `Delete` when `function` is `ProductOffering`.
